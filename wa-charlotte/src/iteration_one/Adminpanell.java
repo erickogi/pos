@@ -26,10 +26,10 @@ import javax.swing.JOptionPane;
  *
  * @author  Administrator
  */
-public class Aadmin extends javax.swing.JFrame {
+public class Adminpanell extends javax.swing.JFrame {
 
     /** Creates new form Login */
-    public Aadmin() {
+    public Adminpanell() {
         initComponents();
         TxtUserName.addActionListener(new ActionListener() {
 
@@ -79,7 +79,7 @@ public class Aadmin extends javax.swing.JFrame {
               // MainClass.StrUser=TxtUserName.getText();
                //this.setVisible(false);
 
-                inventory m=new inventory();
+                adminpanel m=new adminpanel();
                 m.setVisible(true);
               Adminpanell k= new Adminpanell();
                       k.setVisible(false);
@@ -169,7 +169,7 @@ public class Aadmin extends javax.swing.JFrame {
                 CmdOkActionPerformed(evt);
             }
         });
-//
+
 //        CmdClose.setText("QUIT");
 //        CmdClose.addActionListener(new java.awt.event.ActionListener() {
 //            public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,7 +245,6 @@ public class Aadmin extends javax.swing.JFrame {
 //        // Close project
 //        System.exit(1);
 //    }
-    //setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
     private void CmdOkActionPerformed(java.awt.event.ActionEvent evt) {
         //validation
@@ -286,7 +285,7 @@ public class Aadmin extends javax.swing.JFrame {
            if (rs.next())
            {
               // MainClass.StrUser=TxtUserName.getText();
-               inventory m=new inventory();
+                adminpanel m=new adminpanel();
                m.setVisible(true);
                this.setVisible(false);
 
@@ -319,7 +318,7 @@ public class Aadmin extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Aadmin().setVisible(true);
+                new Adminpanell().setVisible(true);
             }
         });
     }

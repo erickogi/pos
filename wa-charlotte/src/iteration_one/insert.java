@@ -5,6 +5,8 @@
  */
 package iteration_one;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,6 +28,20 @@ public class insert extends javax.swing.JFrame {
     public insert() {
         initComponents();
         Show_Users_In_JTable();
+         jTextField_name.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               jTextField_quantity.requestFocus(); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+          jTextField_quantity.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               jTextField_price.requestFocus(); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
 
     /**
@@ -60,7 +76,7 @@ public class insert extends javax.swing.JFrame {
 
        Connection connection = getConnection();
 
-       
+
 
        String query = "SELECT * FROM  `users` ";
 
@@ -68,7 +84,7 @@ public class insert extends javax.swing.JFrame {
 
        ResultSet rs;
 
-       
+
 
        try {
 
@@ -119,7 +135,7 @@ public void Show_Users_In_JTable()
 
            row[3] = list.get(i).getAge();
 
-           
+
 
            model.addRow(row);
 
@@ -150,7 +166,7 @@ public void Show_Users_In_JTable()
 
                Show_Users_In_JTable();
 
-               
+
 
                JOptionPane.showMessageDialog(null, "Data "+message+" Succefully");
 
@@ -167,7 +183,7 @@ public void Show_Users_In_JTable()
        }
 
    }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -194,6 +210,7 @@ public void Show_Users_In_JTable()
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -277,7 +294,11 @@ public void Show_Users_In_JTable()
             }
         });
 
-        jButton_delete.setText("DELETE");
+      //  jButton_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iteration_one/New Folder/booked1.png"))); // NOI18N
+        jButton_delete.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/iteration_one/New Folder/booked1.png"))); // NOI18N
+        jButton_delete.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/iteration_one/New Folder/booked1.png"))); // NOI18N
+        jButton_delete.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/iteration_one/New Folder/booked1.png"))); // NOI18N
+        jButton_delete.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iteration_one/New Folder/booked1.png"))); // NOI18N
         jButton_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_deleteActionPerformed(evt);
@@ -286,12 +307,19 @@ public void Show_Users_In_JTable()
 
         jLabel1.setText("PRODUCT LIST");
 
-        jLabel2.setText("WARCHALLOTE HARDWARE RETAIL SYSTEM");
+        jLabel2.setText(" RETAIL SYSTEM");
 
         back.setText("BACK TO SELL");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("PANEL");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -304,7 +332,6 @@ public void Show_Users_In_JTable()
                 .addComponent(jLabel1)
                 .addGap(386, 386, 386))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -325,13 +352,15 @@ public void Show_Users_In_JTable()
                             .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jButton_update, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +373,7 @@ public void Show_Users_In_JTable()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(47, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelid, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,7 +400,9 @@ public void Show_Users_In_JTable()
                             .addComponent(jButton_update, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(49, 49, 49))))
         );
 
@@ -380,7 +411,7 @@ public void Show_Users_In_JTable()
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(4, 4, 4)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -427,7 +458,7 @@ public void Show_Users_In_JTable()
         // TODO add your handling code here:
           String query = "INSERT INTO `users`(`fname`, `lname`, `age`) VALUES ('"+jTextField_name.getText()+"','"+jTextField_quantity.getText()+"',"+jTextField_price.getText()+")";
 
-        
+
 
         executeSQlQuery(query, "Inserted");
     }//GEN-LAST:event_jButton_InsertActionPerformed
@@ -441,7 +472,7 @@ public void Show_Users_In_JTable()
 
         TableModel model = jTable_Display_Users.getModel();
 
-        
+
 
          // Display Slected Row In JTexteFields
 
@@ -462,7 +493,7 @@ public void Show_Users_In_JTable()
 
         jTextField_price.setText(model.getValueAt(i,3).toString());
 
-                                                     
+
 
 
 
@@ -475,6 +506,13 @@ public void Show_Users_In_JTable()
                this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        adminpanel m=new adminpanel();
+               m.setVisible(true);
+               this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -482,7 +520,7 @@ public void Show_Users_In_JTable()
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -512,6 +550,7 @@ public void Show_Users_In_JTable()
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Insert;
     private javax.swing.JButton jButton_delete;
     private javax.swing.JButton jButton_update;

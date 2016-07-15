@@ -14,7 +14,7 @@ import javax.swing.table.TableModel;
  *
  * @author kimani kogi
  */
-public class User_1 {
+public class User_dc {
 
     static TableModel resultSetToTableModel(ResultSet result) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -23,11 +23,11 @@ public class User_1 {
     private int id;
     private String fname;
     private String lname;
-    private int age;
+    private String age;
     //private String updated_at;
     
     
-    public User_1(int Id,String Fname,String Lname,int Age)
+    public User_dc(int Id,String Fname,String Lname,String Age)
     {
         this.id = Id;
         this.fname = Fname;
@@ -51,7 +51,7 @@ public class User_1 {
         return lname;
     }
     
-    public int getAge()
+    public String getAge()
     {
         return age;
         

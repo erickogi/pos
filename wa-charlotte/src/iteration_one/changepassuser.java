@@ -5,8 +5,6 @@
  */
 package iteration_one;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,119 +15,13 @@ import javax.swing.JOptionPane;
  *
  * @author kimani kogi
  */
-public class changepass extends javax.swing.JFrame {
-
+public class changepassuser extends javax.swing.JFrame {
 
     /**
      * Creates new form changepass
      */
-    public changepass() {
+    public changepassuser() {
         initComponents();
-        oldpassword.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               newpassword.requestFocus(); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-        newpassword.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               confirmpassword.requestFocus(); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-         confirmpassword.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               //changeActionPerformed(); //To change body of generated methods, choose Tools | Templates.
-                 String stru="";
-        stru=oldpassword.getText();
-        
-        String strp="";
-        strp=newpassword.getText();
-        
-         String strc="";
-        strc=confirmpassword.getText();
-        if (stru.isEmpty()==true)
-        {
-         JOptionPane.showMessageDialog(null,"Enter Password");
-         return;
-        }
-        
-        if (strp.isEmpty()==true)
-        {
-         JOptionPane.showMessageDialog(null,"Enter Password");
-         return;
-        }
-        if (strc.isEmpty()==true)
-        {
-         JOptionPane.showMessageDialog(null,"Enter Password");
-         return;
-        }
-        try
-        {
-            //get database connection details
-           
-            
-             //open connection
-            Connection connection;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
-            String str="";
-            String str1="";
-            str="select * from adminuser where  user_password =?";
-            str1="select * from lib_user where  user_password =?";
-           PreparedStatement pst=connection.prepareStatement(str);
-           PreparedStatement pst1=connection.prepareStatement(str1);
-           pst.setString(1, stru);
-           pst1.setString(1, stru);
-          // pst.setString(2, strp);
-           ResultSet rs;
-           ResultSet rs1;
-           rs=pst.executeQuery();
-           rs1=pst1.executeQuery();
-           if (rs.next()&&rs1.next())
-               
-           {
-               try
-        {
-        //Connection connection;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");  
-
-            String sql = "UPDATE adminuser SET user_password ='"+confirmpassword.getText()+"'  ";
-            String sql1 = "UPDATE lib_user SET user_password='"+confirmpassword.getText()+"'WHERE user_name='admin'  ";
-            //PreparedStatement pst=connection.prepareStatement(sql);
-            pst.executeUpdate(sql);
-            pst1.executeUpdate(sql1);
-        }
-            catch (Exception a) {
-            System.err.println(a);
-            System.exit(1);
-        }
-    
-            
-              // MainClass.StrUser=TxtUserName.getText();
-               sellform m=new sellform();
-               m.setVisible(true);
-               //this.setVisible(false);
-               
-           }
-           else
-           {
-                JOptionPane.showMessageDialog(null,"User name or password are not correct.");
-                return;
-            }
-           
-
-        }
-        catch (Exception a)
-        {
-            System.err.println(a);
-            System.exit(1);
-        }
-            }
-        });
     }
 public Connection getConnection()
 
@@ -180,11 +72,9 @@ public Connection getConnection()
 
         jLabel2.setText("enter new password");
 
-        oldpassword.setNextFocusableComponent(oldpassword);
-
         jLabel3.setText("confirm password");
 
-        jLabel4.setText("user name is admin");
+        jLabel4.setText("user name is user");
 
         change.setText("change");
         change.addActionListener(new java.awt.event.ActionListener() {
@@ -192,15 +82,10 @@ public Connection getConnection()
                 changeActionPerformed(evt);
             }
         });
-        change.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                changeKeyTyped(evt);
-            }
-        });
 
-        jLabel5.setText("change admin password");
+        jLabel5.setText("change user password");
 
-        jButton1.setText("change user password");
+        jButton1.setText("change admin password");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -234,7 +119,7 @@ public Connection getConnection()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,19 +185,19 @@ public Connection getConnection()
             Connection connection;
             connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
             String str="";
-            String str1="";
-            str="select * from adminuser where  user_password =?";
-            str1="select * from lib_user where  user_password =?";
+            //String str1="";
+            str="select * from lib_user where  user_password =?";
+            //str1="select * from lib_user where  user_password =?";
            PreparedStatement pst=connection.prepareStatement(str);
-           PreparedStatement pst1=connection.prepareStatement(str1);
+           //PreparedStatement pst1=connection.prepareStatement(str1);
            pst.setString(1, stru);
-           pst1.setString(1, stru);
+           //pst1.setString(1, stru);
           // pst.setString(2, strp);
            ResultSet rs;
-           ResultSet rs1;
+          // ResultSet rs1;
            rs=pst.executeQuery();
-           rs1=pst1.executeQuery();
-           if (rs.next()&&rs1.next())
+          // rs1=pst1.executeQuery();
+           if (rs.next())
                
            {
                try
@@ -320,11 +205,11 @@ public Connection getConnection()
         //Connection connection;
             connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");  
 
-            String sql = "UPDATE adminuser SET user_password ='"+confirmpassword.getText()+"'  ";
-            String sql1 = "UPDATE lib_user SET user_password='"+confirmpassword.getText()+"'WHERE user_name='admin'  ";
+            String sql = "UPDATE lib_user SET user_password ='"+confirmpassword.getText()+"'WHERE user_name='user'  ";
+            //String sql1 = "UPDATE lib_user SET user_password='"+confirmpassword.getText()+"'WHERE user_name='admin'  ";
             //PreparedStatement pst=connection.prepareStatement(sql);
             pst.executeUpdate(sql);
-            pst1.executeUpdate(sql1);
+            //pst1.executeUpdate(sql1);
         }
             catch (Exception e) {
             System.err.println(e);
@@ -358,17 +243,10 @@ public Connection getConnection()
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        changepassuser m=new changepassuser();
+        changepass m=new changepass();
                m.setVisible(true);
                this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void changeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_changeKeyTyped
-        // TODO add your handling code here:
-//        changepassuser m=new changepassuser();
-//               m.setVisible(true);
-//               this.setVisible(false);
-    }//GEN-LAST:event_changeKeyTyped
 
     /**
      * @param args the command line arguments
@@ -387,20 +265,21 @@ public Connection getConnection()
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(changepass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(changepassuser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(changepass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(changepassuser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(changepass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(changepassuser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(changepass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(changepassuser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new changepass().setVisible(true);
+                new changepassuser().setVisible(true);
             }
         });
     }

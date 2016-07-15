@@ -5,9 +5,12 @@
  */
 package iteration_one;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -18,6 +21,13 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
+import net.sf.dynamicreports.report.builder.DynamicReports;
+import net.sf.dynamicreports.report.builder.column.Columns;
+import net.sf.dynamicreports.report.builder.component.Components;
+import net.sf.dynamicreports.report.builder.datatype.DataTypes;
+import net.sf.dynamicreports.report.constant.HorizontalAlignment;
+import net.sf.dynamicreports.report.exception.DRException;
 
 /**
  *
@@ -29,14 +39,14 @@ DefaultTableModel model = new DefaultTableModel();
      * Creates new form inventory
      */
     public inventory() {
-        
+
         //initComponents();
         //Show_Users_In_JTable();
-    
+
        this.jTable = new JTable(model);
         this.jtFilter= new JTextField();
          final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable.getModel());
-       jTable.setRowSorter(rowSorter); 
+       jTable.setRowSorter(rowSorter);
           jtFilter.getDocument().addDocumentListener(new DocumentListener(){
 
             @Override
@@ -64,9 +74,47 @@ DefaultTableModel model = new DefaultTableModel();
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
-        });   
+        });
             initComponents();
     }
+    public void print () {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root", "");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
+
+		JasperReportBuilder report = DynamicReports.report();//a new report
+		report
+		  .columns(
+		  	Columns.column(" Id", "id", DataTypes.integerType())
+		  		.setHorizontalAlignment(HorizontalAlignment.LEFT),
+		  	Columns.column("product Name", "fname", DataTypes.stringType()),
+		  	Columns.column("Quantity Name", "lname", DataTypes.stringType()),
+		  	Columns.column("Price", "age", DataTypes.stringType())
+		  		.setHorizontalAlignment(HorizontalAlignment.LEFT)
+		  	)
+		  .title(//title of the report
+		  	Components.text("INVENTORY  REPORT")
+		  		.setHorizontalAlignment(HorizontalAlignment.CENTER))
+		  .pageFooter(Components.pageXofY())//show page number on the page footer
+		  .setDataSource("SELECT id, fname, lname, age FROM users", connection);
+
+		try {
+			report.show();//show the report
+			report.toPdf(new FileOutputStream("C:\\Users\\kimani kogi\\OneDrive\\Pictures\report.pdf"));//export the report to a pdf file
+		} catch (DRException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
  public Connection getConnection()
 
    {
@@ -122,11 +170,11 @@ DefaultTableModel model = new DefaultTableModel();
     }
        public void findUsers()
     {
-       
+
         ArrayList<User_1> users = ListUsers(jtFilter.getText());
         DefaultTableModel model = new DefaultTableModel();
-         
-         
+
+
         model.setColumnIdentifiers(new Object[]{"ID","name","quantity","price"});
         Object[] row = new Object[4];
 
@@ -143,7 +191,7 @@ DefaultTableModel model = new DefaultTableModel();
     }
 
 
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -159,6 +207,8 @@ DefaultTableModel model = new DefaultTableModel();
         jtFilter = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         sell = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -206,6 +256,20 @@ DefaultTableModel model = new DefaultTableModel();
             }
         });
 
+        jButton1.setText("PRINT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("PANEL");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -220,7 +284,11 @@ DefaultTableModel model = new DefaultTableModel();
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(462, 462, 462)
-                        .addComponent(sell, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sell, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -237,7 +305,10 @@ DefaultTableModel model = new DefaultTableModel();
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sell, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sell, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
 
@@ -273,8 +344,20 @@ DefaultTableModel model = new DefaultTableModel();
         sellform m=new sellform();
                m.setVisible(true);
                this.setVisible(false);
-                
+
     }//GEN-LAST:event_sellActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        print();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        adminpanel m=new adminpanel();
+               m.setVisible(true);
+               this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,7 +366,7 @@ DefaultTableModel model = new DefaultTableModel();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -312,6 +395,8 @@ DefaultTableModel model = new DefaultTableModel();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

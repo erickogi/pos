@@ -149,7 +149,7 @@
                   </Group>
               </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="1087" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="1062" max="-2" attributes="0"/>
                   <Component id="jScrollPane8" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -251,7 +251,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="WACHARLOTTE RETAIL SYSTEM "/>
+            <Property name="text" type="java.lang.String" value="RETAIL SYSTEM 0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtFilter">
