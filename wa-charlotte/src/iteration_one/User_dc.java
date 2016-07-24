@@ -24,15 +24,17 @@ public class User_dc {
     private String fname;
     private String lname;
     private String age;
+    private String product;
     //private String updated_at;
     
     
-    public User_dc(int Id,String Fname,String Lname,String Age)
+    public User_dc(int Id,String Fname,String Lname,String Age,String Product)
     {
         this.id = Id;
         this.fname = Fname;
         this.lname = Lname;
         this.age = Age;
+        this.product = Product;
         //this.updated_at=Updated_at;
     }
     
@@ -54,6 +56,11 @@ public class User_dc {
     public String getAge()
     {
         return age;
+        
+    }
+     public String getProduct()
+    {
+        return product;
         
     }
 //    public String getUpdated_at()

@@ -81,7 +81,7 @@ DefaultTableModel model = new DefaultTableModel();
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root", "");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root", "123ERYcog.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return;
@@ -104,7 +104,7 @@ DefaultTableModel model = new DefaultTableModel();
 		  	Components.text("INVENTORY  REPORT")
 		  		.setHorizontalAlignment(HorizontalAlignment.CENTER))
 		  .pageFooter(Components.pageXofY())//show page number on the page footer
-		  .setDataSource("SELECT id, fname, lname, age FROM users", connection);
+		  .setDataSource("SELECT id, fname, lname, bp,age FROM users", connection);
 
 		try {
 			report.show();//show the report
@@ -123,7 +123,7 @@ DefaultTableModel model = new DefaultTableModel();
 
        try {
 
-           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
 
            return con;
 
@@ -157,7 +157,9 @@ DefaultTableModel model = new DefaultTableModel();
                                  rs.getInt("id"),
                                  rs.getString("fname"),
                                  rs.getString("lname"),
-                                 rs.getInt("age")
+                                 rs.getInt("age"),
+                        rs.getInt("bp"),
+                        rs.getString("from")
                                 );
                 usersList.add(user);
             }
@@ -175,8 +177,8 @@ DefaultTableModel model = new DefaultTableModel();
         DefaultTableModel model = new DefaultTableModel();
 
 
-        model.setColumnIdentifiers(new Object[]{"ID","name","quantity","price"});
-        Object[] row = new Object[4];
+        model.setColumnIdentifiers(new Object[]{"ID","name","quantity","sell price","buy price","from"});
+        Object[] row = new Object[6];
 
      for(int i = 0; i < users.size(); i++)
         {
@@ -184,6 +186,9 @@ DefaultTableModel model = new DefaultTableModel();
             row[1] = users.get(i).getFname();
             row[2] = users.get(i).getLname();
             row[3] = users.get(i).getAge();
+            row[4] = users.get(i).getBp();
+            row[5]=users.get(i).getFrom();
+            
             model.addRow(row);
         }
        jTable.setModel(model);

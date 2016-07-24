@@ -50,7 +50,7 @@ public class SimpleReportExample {
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root", "");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root", "123ERYcog.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return;

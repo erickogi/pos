@@ -143,7 +143,7 @@ public Connection getConnection()
         
 
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
             
         }catch(Exception ex){
             System.out.println(ex.getMessage());
@@ -172,7 +172,8 @@ public Connection getConnection()
                                  rs.getInt("id"),
                                  rs.getString("fname"),
                                  rs.getString("lname"),
-                                 rs.getString("age")
+                                 rs.getString("age"),
+                                 rs.getString("product")
                                 );
                 usersList.add(user);
             }
@@ -204,7 +205,8 @@ public Connection getConnection()
                                  rs1.getInt("id"),
                                  rs1.getString("fname"),
                                  rs1.getString("lname"),
-                                 rs1.getString("age")
+                                 rs1.getString("age"),
+                        rs1.getString("product")
                                 );
                 usersList1.add(user);
             }
@@ -222,8 +224,8 @@ public Connection getConnection()
         DefaultTableModel model = new DefaultTableModel();
          
          
-        model.setColumnIdentifiers(new Object[]{"id","name","cash","status"});
-        Object[] row = new Object[4];
+        model.setColumnIdentifiers(new Object[]{"id","name","cash","status","product"});
+        Object[] row = new Object[5];
 
      for(int i = 0; i < users.size(); i++)
         {
@@ -231,6 +233,7 @@ public Connection getConnection()
             row[1] = users.get(i).getFname();
             row[2] = users.get(i).getLname();
             row[3] = users.get(i).getAge();
+            row[4] = users.get(i).getProduct();
             model.addRow(row);
         }
        table.setModel(model);
@@ -243,8 +246,8 @@ public Connection getConnection()
         DefaultTableModel model = new DefaultTableModel();
          
          
-        model.setColumnIdentifiers(new Object[]{"id","name","cash","status"});
-        Object[] row = new Object[4];
+        model.setColumnIdentifiers(new Object[]{"id","name","cash","status","product"});
+        Object[] row = new Object[5];
 
      for(int i = 0; i < users.size(); i++)
         {
@@ -252,6 +255,7 @@ public Connection getConnection()
             row[1] = users.get(i).getFname();
             row[2] = users.get(i).getLname();
             row[3] = users.get(i).getAge();
+            row[4] = users.get(i).getProduct();
             model.addRow(row);
         }
        table2.setModel(model);
@@ -387,6 +391,10 @@ public Connection getConnection()
         debtorsid = new javax.swing.JTextField();
         creditorid = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -469,7 +477,7 @@ public Connection getConnection()
             }
         });
 
-        debtorpaid.setText("status");
+        debtorpaid.setText("Update");
         debtorpaid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 debtorpaidActionPerformed(evt);
@@ -490,7 +498,7 @@ public Connection getConnection()
             }
         });
 
-        creditorpaid.setText("status");
+        creditorpaid.setText("Update");
         creditorpaid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 creditorpaidActionPerformed(evt);
@@ -534,6 +542,11 @@ public Connection getConnection()
         });
 
         clearfields.setText("clear");
+        clearfields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearfieldsActionPerformed(evt);
+            }
+        });
 
         clearfields1.setText("clear");
         clearfields1.addActionListener(new java.awt.event.ActionListener() {
@@ -553,6 +566,10 @@ public Connection getConnection()
             }
         });
 
+        jLabel3.setText("product(optional)");
+
+        jLabel6.setText("product(optional)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -568,57 +585,69 @@ public Connection getConnection()
                                 .addComponent(clearfields1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel11))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(debtorsid, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
-                                .addGap(30, 30, 30)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(debtorsstatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-                                    .addComponent(debtorsamount)
-                                    .addComponent(debtorsname)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(81, 81, 81)
-                                .addComponent(debtorsid, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 9, Short.MAX_VALUE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel4))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(debtorsstatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                                            .addComponent(debtorsamount)
+                                            .addComponent(debtorsname)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(17, 17, 17)))))
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTextField1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addcreditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(creditorpaid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(changecreditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addcreditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(creditorpaid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(changecreditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel8))
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(creditorstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                                    .addComponent(creditoramount)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(clearfields)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel12)))
-                        .addGap(0, 9, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(creditorname, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                            .addComponent(creditorid))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel8))
+                                            .addComponent(jLabel7))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(creditorstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                                            .addComponent(creditoramount)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(clearfields)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel12))
+                                    .addComponent(jTextField2))
+                                .addGap(0, 6, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(creditorname, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                                    .addComponent(creditorid))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jtFilter2)
                     .addComponent(jScrollPane2))
@@ -651,7 +680,11 @@ public Connection getConnection()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(creditorstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(136, 136, 136)
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addcreditor, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(creditorpaid, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -682,7 +715,11 @@ public Connection getConnection()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(debtorsstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(137, 137, 137)
+                                .addGap(56, 56, 56)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(adddebtors, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
                                 .addComponent(debtorpaid, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -763,6 +800,7 @@ public Connection getConnection()
 
 
        debtorsstatus.setText(model.getValueAt(i,3).toString());
+        jTextField1.setText(model.getValueAt(i,4).toString());
 
                                                      
 
@@ -773,7 +811,7 @@ public Connection getConnection()
 
     private void adddebtorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adddebtorsActionPerformed
         // TODO add your handling code here:
-        String query = "INSERT INTO debts( lname,fname, age) VALUES ('"+debtorsamount.getText()+"','"+debtorsname.getText()+"','"+debtorsstatus.getText()+"')";
+        String query = "INSERT INTO debts( lname,fname, age,product) VALUES ('"+debtorsamount.getText()+"','"+debtorsname.getText()+"','"+debtorsstatus.getText()+"','"+jTextField1.getText()+"')";
         // String query = "INSERT INTO `users`(`fname`, `lname`, `age`) VALUES ('"+jTextField_name.getText()+"','"+jTextField_quantity.getText()+"',"+jTextField_price.getText()+")";
 
         
@@ -824,13 +862,14 @@ public Connection getConnection()
 
 
        creditorstatus.setText(model.getValueAt(i,3).toString());
+         jTextField2.setText(model.getValueAt(i,4).toString());
 
                                           
     }//GEN-LAST:event_table2MouseClicked
 
     private void addcreditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcreditorActionPerformed
         // TODO add your handling code here:
-         String query = "INSERT INTO credits( lname,fname, age) VALUES ('"+creditoramount.getText()+"','"+creditorname.getText()+"','"+creditorstatus.getText()+"')";
+         String query = "INSERT INTO credits( lname,fname, age,product) VALUES ('"+creditoramount.getText()+"','"+creditorname.getText()+"','"+creditorstatus.getText()+"','"+jTextField2.getText()+"')";
         // String query = "INSERT INTO `users`(`fname`, `lname`, `age`) VALUES ('"+jTextField_name.getText()+"','"+jTextField_quantity.getText()+"',"+jTextField_price.getText()+")";
 
         
@@ -858,6 +897,8 @@ public Connection getConnection()
         debtorsamount.setText(null);
         debtorsid.setText(null);
         debtorsstatus.setText(null);
+        jTextField1.setText(null);
+        
         
     }//GEN-LAST:event_clearfields1ActionPerformed
 
@@ -879,6 +920,15 @@ public Connection getConnection()
                m.setVisible(true);
                this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void clearfieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearfieldsActionPerformed
+        // TODO add your handling code here:
+          jTextField2.setText(null);
+          creditoramount.setText(null);
+           creditorname.setText(null);
+            creditorstatus.setText(null);
+             creditorid.setText(null);
+    }//GEN-LAST:event_clearfieldsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -938,13 +988,17 @@ public Connection getConnection()
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jtFilter;
     private javax.swing.JTextField jtFilter2;
     private javax.swing.JTable table;

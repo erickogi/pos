@@ -23,7 +23,7 @@ public static void main(String[] args){
 
 //connect your app to mysql database
    try{
-       con = DriverManager.getConnection("jdbc:mysql://localhost/users","root","");
+       con = DriverManager.getConnection("jdbc:mysql://localhost/users","root","123ERYcog.");
        st = con.createStatement();
        s = "select * from users";
        rs = st.executeQuery(s);

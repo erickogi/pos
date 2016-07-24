@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package iteration_one;
 
 import java.awt.TextField;
@@ -98,73 +94,123 @@ dm.fireTableDataChanged();
     }
      public  void sum() throws Exception {
     double sum = 0;
-    Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users",
-        "root", "");
-    Statement st = con.createStatement();
-    ResultSet res = st.executeQuery("SELECT SUM(age) FROM trans");
-    while (res.next()) {
-      double c = res.getInt(1);
-      sum = sum + c;
-
-    }
-   total.setText(Double.toString(sum));
-  }
-        public  void sum1() throws Exception {
     double sum1 = 0;
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users",
-        "root", "");
+        "root", "123ERYcog.");
+    Statement st = con.createStatement();
     Statement st1 = con.createStatement();
-    ResultSet res1 = st1.executeQuery("SELECT SUM(age) FROM trans  WHERE WEEK(updated_at)=WEEK(CURDATE()) AND YEAR(updated_at)=YEAR(CURDATE())");
-    while (res1.next()) {
+    ResultSet res = st.executeQuery("SELECT SUM(age) FROM trans");
+    ResultSet res1 = st1.executeQuery("SELECT SUM(bp) FROM trans");
+    while (res.next()&&res1.next()) {
+      double c = res.getInt(1);
       double c1 = res1.getInt(1);
+      sum1=c-c1;
+      sum = sum + c;
+
+    }
+    profit.setText(Double.toString(sum1));
+   total.setText(Double.toString(sum));
+  }
+//          public  void profit() throws Exception {
+//    double sum1 = 0;
+//    int a;
+//    Class.forName("com.mysql.jdbc.Driver");
+//    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users",
+//        "root", "123ERYcog.");
+//    Statement st1 = con.createStatement();
+//    ResultSet res1 = st1.executeQuery("SELECT SUM(bp) FROM users  WHERE WEEK(updated_at)=WEEK(CURDATE()) AND YEAR(updated_at)=YEAR(CURDATE())");
+//    while (res1.next()) {
+//      double c1 = res1.getInt(1);
+//    a=Integer.valueOf(total.getText());
+//      sum1 =c1-a;
+//      
+//
+//    }
+//   profit.setText(Double.toString(sum1));
+//  }
+        public  void sum1() throws Exception {
+    double sum1 = 0;
+    double sum2 = 0;
+    Class.forName("com.mysql.jdbc.Driver");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users",
+        "root", "123ERYcog.");
+    Statement st1 = con.createStatement();
+    Statement st2 = con.createStatement();
+    ResultSet res1 = st1.executeQuery("SELECT SUM(age) FROM trans  WHERE WEEK(updated_at)=WEEK(CURDATE()) AND YEAR(updated_at)=YEAR(CURDATE())");
+    ResultSet res2 = st2.executeQuery("SELECT SUM(bp) FROM trans  WHERE WEEK(updated_at)=WEEK(CURDATE()) AND YEAR(updated_at)=YEAR(CURDATE())");
+    while (res1.next()&&res2.next()) {
+      double c1 = res1.getInt(1);
+       double c2 = res2.getInt(1);
+      
+      sum2 =c1-c2;
       sum1 = sum1 + c1;
 
     }
+    profit.setText(Double.toString(sum2));
    total.setText(Double.toString(sum1));
   }
               public  void sum2() throws Exception {
     double sum2 = 0;
+    double sum1 = 0;
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users",
-        "root", "");
-    Statement st2 = con.createStatement();
-    ResultSet res2 = st2.executeQuery("SELECT SUM(age) FROM trans  WHERE MONTH(updated_at)=MONTH(CURDATE()) AND YEAR(updated_at)=YEAR(CURDATE())");
-    while (res2.next()) {
-      double c2 = res2.getInt(1);
-      sum2 = sum2 + c2;
+        "root", "123ERYcog.");
+    Statement st3 = con.createStatement();
+      Statement st4 = con.createStatement();
+    ResultSet res3 = st3.executeQuery("SELECT SUM(age) FROM trans  WHERE MONTH(updated_at)=MONTH(CURDATE()) AND YEAR(updated_at)=YEAR(CURDATE())");
+     ResultSet res4 = st4.executeQuery("SELECT SUM(bp) FROM trans  WHERE MONTH(updated_at)=MONTH(CURDATE()) AND YEAR(updated_at)=YEAR(CURDATE())");
+    while (res3.next()&&res4.next()) {
+      double c1 = res3.getInt(1);
+       double c2 = res4.getInt(1);
+      
+      sum2 =c1-c2;
+      sum1 = sum1 + c1;
 
     }
-   total.setText(Double.toString(sum2));
+    profit.setText(Double.toString(sum2));
+   total.setText(Double.toString(sum1));
   }
     public  void sum3() throws Exception {
     double sum2 = 0;
+    double sum3 = 0;
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users",
-        "root", "");
+        "root", "123ERYcog.");
     Statement st2 = con.createStatement();
-    ResultSet res2 = st2.executeQuery("SELECT SUM(age) FROM trans  WHERE DATE(updated_at) = DATE(NOW())");
-    while (res2.next()) {
-      double c2 = res2.getInt(1);
+    Statement st5 = con.createStatement();
+    ResultSet res5 = st2.executeQuery("SELECT SUM(age) FROM trans  WHERE DATE(updated_at) = DATE(NOW())");
+    ResultSet res6 = st5.executeQuery("SELECT SUM(bp) FROM trans  WHERE DATE(updated_at) = DATE(NOW())");
+    while (res5.next()&&res6.next()) {
+      double c2 = res5.getInt(1);
+      double c3 = res6.getInt(1);
+      sum3 =c2-c3;
       sum2 = sum2 + c2;
+      
 
     }
+    profit.setText(Double.toString(sum3));
    total.setText(Double.toString(sum2));
   }
  public  void sum4() throws Exception {
-    int sum2 = 0;
+    double sum2 = 0;
+    double sum1 = 0;
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users",
-        "root", "");
+        "root", "123ERYcog.");
     Statement st2 = con.createStatement();
-    ResultSet res2 = st2.executeQuery("SELECT SUM(age) FROM trans  WHERE DAY(updated_at)="+jTextField3.getText()+" AND YEAR(updated_at)="+jTextField1.getText()+" AND MONTH(updated_at)="+jTextField2.getText()+"");
-    while (res2.next()) {
-      int c2 = res2.getInt(1);
+    Statement st0 = con.createStatement();
+    ResultSet res7 = st2.executeQuery("SELECT SUM(age) FROM trans  WHERE DAY(updated_at)="+jTextField3.getText()+" AND YEAR(updated_at)="+jTextField1.getText()+" AND MONTH(updated_at)="+jTextField2.getText()+"");
+    ResultSet res8 = st0.executeQuery("SELECT SUM(bp) FROM trans  WHERE DAY(updated_at)="+jTextField3.getText()+" AND YEAR(updated_at)="+jTextField1.getText()+" AND MONTH(updated_at)="+jTextField2.getText()+"");
+    while (res7.next()&&res8.next()) {
+      double c2 = res7.getInt(1);
+      double c3= res8.getInt(1);
       sum2 = sum2 + c2;
+      sum1 =c2-c3;
 
     }
-   total.setText(Integer.toString(sum2));
+     profit.setText(Double.toString(sum1));
+   total.setText(Double.toString(sum2));
   }
    public void printss(){
              // SimpleReportExample.print();
@@ -176,7 +222,7 @@ dm.fireTableDataChanged();
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root", "");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root", "123ERYcog.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return;
@@ -221,7 +267,7 @@ dm.fireTableDataChanged();
 
        try {
 
-           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
 
            return con;
 
@@ -671,6 +717,9 @@ public ArrayList<User_2> getUsersList1()
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        profit = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -769,21 +818,31 @@ public ArrayList<User_2> getUsersList1()
             }
         });
 
+        jButton7.setText("DELETE");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("PROFIT");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(328, 328, 328)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(549, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(328, 328, 328)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(6, 6, 6)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -800,7 +859,7 @@ public ArrayList<User_2> getUsersList1()
                         .addGap(18, 18, 18)
                         .addComponent(setdate, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
@@ -808,7 +867,7 @@ public ArrayList<User_2> getUsersList1()
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -818,50 +877,61 @@ public ArrayList<User_2> getUsersList1()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton4)
-                            .addComponent(jButton1)))))
+                            .addComponent(jButton1)
+                            .addComponent(jButton7)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(profit)
+                            .addComponent(total, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(6, 6, 6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(7, 7, 7)
-                        .addComponent(setdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton12))
-                        .addGap(31, 31, 31)
-                        .addComponent(today, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addContainerGap())))
+                .addComponent(jScrollPane1)
+                .addGap(6, 6, 6))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(profit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(7, 7, 7)
+                .addComponent(setdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton12))
+                .addGap(31, 31, 31)
+                .addComponent(today, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -932,6 +1002,7 @@ dm.fireTableDataChanged();
         total.setText(null);
         jTextField2.setText(null);
         jTextField3.setText(null);
+        profit.setText(null);
 
         DefaultTableModel dm = (DefaultTableModel)jTable.getModel();
 dm.getDataVector().removeAllElements();
@@ -959,6 +1030,7 @@ dm.fireTableDataChanged();
         Show_Users_In_JTable2();
         try {
             sum1();
+           // profit();
         } catch (Exception ex) {
             Logger.getLogger(transactions.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -988,6 +1060,12 @@ Show_Users_In_JTable3();
                m.setVisible(true);
                this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Transupdate m=new Transupdate();
+               m.setVisible(true);
+               this.setVisible(false);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1032,7 +1110,9 @@ Show_Users_In_JTable3();
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1042,6 +1122,7 @@ Show_Users_In_JTable3();
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField profit;
     private javax.swing.JButton setdate;
     private javax.swing.JButton today;
     private javax.swing.JTextField total;

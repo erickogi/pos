@@ -4,18 +4,30 @@
  * and open the template in the editor.
  */
 package iteration_one;
-import java.util.Calendar;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -27,6 +39,15 @@ import javax.swing.table.TableRowSorter;
 
 public class sellform extends javax.swing.JFrame {
    DefaultTableModel model = new DefaultTableModel();
+  int b;
+   int a;
+   
+ //jcartarea.append( "name"+tab);
+            //jcartarea.append( "quantity"+tab);
+            //jcartarea.append( "pric"+newline);
+  // int qua;
+ // int y;
+         //y =Integer.valueOf(quantity1.getText());   // private Object bp;
    //jcartarea.getText();
    //String Jcart;
   // Jcart.setText(jcartarea.getText());
@@ -67,7 +88,9 @@ public class sellform extends javax.swing.JFrame {
 //    },500,500);
 //  }
     public sellform() {
-
+      //  this.y = Integer.valueOf(quantity1.getText());
+// int y=Integer.valueOf(quantity1.getText());
+       
        this.table = new JTable(model);
         this.jtFilter= new JTextField();
          final TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
@@ -119,7 +142,9 @@ public class sellform extends javax.swing.JFrame {
             final String tab="\t";
             int pric;
             int qua;
-
+int y,c;
+c=Integer.parseInt(quantity1.getText());
+y=b*c;
             pric=Integer.valueOf(price.getText());
             qua=Integer.valueOf(quantity1.getText());
             String tp=totalpurchase.getText();
@@ -134,9 +159,9 @@ public class sellform extends javax.swing.JFrame {
 
             totalpurchase.setText(tp);
 
-            jcartarea.append( "name"+tab);
-            jcartarea.append( "quantity"+tab);
-            jcartarea.append( "price"+newline);
+            //jcartarea.append( "name"+tab);
+            //jcartarea.append( "quantity"+tab);
+            //jcartarea.append( "price"+newline);
             //Jcart=jcartarea.getText();
 
             jcartarea.append(  productname.getText()+tab );
@@ -151,9 +176,9 @@ public class sellform extends javax.swing.JFrame {
             try
             {
                 Connection connection;
-                connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+                connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
 
-                String sql = "INSERT INTO `trans`( `fname`, `lname`,`updated_at`, `age`) VALUES ('"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
+                String sql = "INSERT INTO `trans`( `bp`,`fname`, `lname`,`updated_at`, `age`) VALUES ("+y+"'"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
                 PreparedStatement pst=connection.prepareStatement(sql);
                 pst.executeUpdate(sql);
             }
@@ -164,7 +189,7 @@ public class sellform extends javax.swing.JFrame {
             try
             {
                 Connection connection;
-                connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+                connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
 
                 String sql = "UPDATE users SET lname = lname-'"+quantity1.getText()+"'  WHERE id='"+productid.getText()+"'";
 
@@ -177,14 +202,83 @@ public class sellform extends javax.swing.JFrame {
             }
             }
         });
+                   SimpleDateFormat df = new SimpleDateFormat();
+String receiptDetailLine;
+              df.applyPattern("dd/MM/yyyy HH:mm:ss");
+    String strText = null;
+    final String LF = "\n";// text string to output
+    int lineStart;           // start index of line in jcartarea
+    int lineEnd;             // end index of line in jcartarea
+    int lineNumber;
+    int lineCount;
+    final String SPACE = "          ";//10 spaces
+    final String SPACES = "         ";//9
+    final String uline = "________________________________________";
+    final String dline = "----------------------------------------";
+    String greetings = "THANKS FOR YOUR VISIT";
+    receiptDetailLine = "RETAIL HARDWARE";
+      //jcartarea.append(SPACES + "sadasdsad" + "\n");
+
+    //jcartarea.append(" " + SPACES + "sadasdsad" + "\n");
+
+   // jcartarea.append(SPACES + "sadasdsad" + "\n");
+
+    jcartarea.append("" + SPACES + "07565454645" + "\n");
+
+    jcartarea.append(SPACES + "YOUR PUCHASES" + "\n");
+
+    jcartarea.append(uline + "\n");
+   // jcartarea.append("Order Ref:" + "   " + receiptDetailLine + "\n");
+    jcartarea.append(dline + "\n");
+    jcartarea.append(" Qty     Description" + SPACES + "  Price" + LF);
+//              final String newline="\n";
+//            final String tab="\t";
+//       this.jcartarea.append( "name"+tab);
+//           this.jcartarea.append( "quantity"+tab);
+//            this.jcartarea.append( "pric"+newline);
     }
+    public void a() {
+    PageFormat format = new PageFormat();
+    Paper paper = new Paper();
+
+    double paperWidth = 3;//3.25
+    double paperHeight = 3.69;//11.69
+    double leftMargin = 0.12;
+    double rightMargin = 0.10;
+    double topMargin = 0;
+    double Margin = 0;
+    double bottomMargin = 0.01;
+
+    paper.setSize(paperWidth * 200, paperHeight * 200);
+    paper.setImageableArea(leftMargin * 200, topMargin * 200,
+            (paperWidth - leftMargin - rightMargin) * 200,
+            (paperHeight - topMargin - bottomMargin) * 200);
+
+    format.setPaper(paper);
+
+    PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
+    aset.add(OrientationRequested.PORTRAIT);
+
+
+    PrinterJob printerJob = PrinterJob.getPrinterJob();
+    Printable printable = new ReceiptPrint();
+
+    format = printerJob.validatePage(format);
+    boolean don = printerJob.printDialog();
+    printerJob.setPrintable(printable, format);
+    try {
+        printerJob.print(aset);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
   public Connection getConnection()
     {
         Connection con = null;
 
 
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
 
         }catch(Exception ex){
             System.out.println(ex.getMessage());
@@ -213,7 +307,9 @@ public class sellform extends javax.swing.JFrame {
                                  rs.getInt("id"),
                                  rs.getString("fname"),
                                  rs.getString("lname"),
-                                 rs.getInt("age")
+                                 rs.getInt("age"),
+                        rs.getInt("bp"),
+                        rs.getString("from")
                                 );
                 usersList.add(user);
             }
@@ -231,8 +327,8 @@ public class sellform extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
 
 
-        model.setColumnIdentifiers(new Object[]{"ID","name","quantity","price"});
-        Object[] row = new Object[4];
+        model.setColumnIdentifiers(new Object[]{"ID","name","quantity","price","buy price"});
+        Object[] row = new Object[5];
 
      for(int i = 0; i < users.size(); i++)
         {
@@ -240,6 +336,7 @@ public class sellform extends javax.swing.JFrame {
             row[1] = users.get(i).getFname();
             row[2] = users.get(i).getLname();
             row[3] = users.get(i).getAge();
+            row[4] = users.get(i).getBp();
             model.addRow(row);
         }
        table.setModel(model);
@@ -697,7 +794,7 @@ public class sellform extends javax.swing.JFrame {
     private void cashinKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashinKeyReleased
         // TODO add your handling code here:
         int pric;
-        int qua;
+       int qua;
         String tp;
 
         pric=Integer.valueOf(cashin.getText());
@@ -736,7 +833,9 @@ public class sellform extends javax.swing.JFrame {
             qua=Integer.valueOf(quantity1.getText());
             String tp=totalpurchase.getText();
             int tps=Integer.valueOf(tp);
-
+            final String LF = "\n";
+final String SPACE = "          ";//10 spaces
+    final String SPACES = "         ";//9
             int top=(pric*qua);
             tp=Integer.toString(top+tps);
             //String b=Integer.toString(a);
@@ -746,15 +845,32 @@ public class sellform extends javax.swing.JFrame {
 
             totalpurchase.setText(tp);
 
-            jcartarea.append( "name"+tab);
-            jcartarea.append( "quantity"+tab);
-            jcartarea.append( "pric"+newline);
+            //jcartarea.append( "name"+tab);
+            //jcartarea.append( "quantity"+tab);
+            //jcartarea.append( "pric"+newline);
             //Jcart=jcartarea.getText();
+       final String ab=quantity1.getText();
+        final String ta=productname.getText();
+         final String tb=totalprice.getText();
+    //jcartarea.append(  productname.getText()+tab );
+           //jcartarea.append(quantity1.getText()+tab);
+           //jcartarea.append(  productname.getText()+tab );
+           //jcartarea.append(productid.getText()+tab);
+          // jcartarea.append(totalprice.getText()+newline +newline);
+            // jcartarea.append(" Qty     Description" + SPACES + "  Price" + LF);
+            jcartarea.append( ab+ "                " +ta +"                "+tb +newline );
+            //productname.getText(),  + SPACES +, totalprice.getText()+ LF);
+   // jcartarea.append(dline + "\n");
 
-            jcartarea.append(  productname.getText()+tab );
-            jcartarea.append(quantity1.getText()+tab);
-            //jcartarea.append(productid.getText()+tab);
-            jcartarea.append(totalprice.getText()+newline +newline);
+   // System.out.println(2);
+
+   // String printedLine = "       Service Charge Complimentary";
+    //jcartarea.append(printedLine + LF);
+
+    //jcartarea.append(LF + SPACES + "   Your Reciept\n" + SPACE + greetings + LF);
+    //jcartarea.append(df.format(new Date()) + LF);
+    jcartarea.setEditable(false);
+            
             // Calender calender=Calender.getInstance();
 //Jcart=jcartarea.getText();
             //java.sql.Date currentTimestamp=new
@@ -763,9 +879,12 @@ public class sellform extends javax.swing.JFrame {
             try
             {
                 Connection connection;
-                connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
-
-                String sql = "INSERT INTO `trans`( `fname`, `lname`,`updated_at`, `age`) VALUES ('"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
+                connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
+int y,c;
+c=Integer.parseInt(quantity1.getText());
+y=b*c;
+                String sql = "INSERT INTO `trans`(`bp`, `fname`, `lname`,`updated_at`, `age`) VALUES ("+y+",'"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
+                  //String sql = "INSERT INTO `trans`( `fname`, `lname`,`updated_at`, `age`) VALUES ('"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
                 PreparedStatement pst=connection.prepareStatement(sql);
                 pst.executeUpdate(sql);
             }
@@ -776,7 +895,7 @@ public class sellform extends javax.swing.JFrame {
             try
             {
                 Connection connection;
-                connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+                connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
 
                 String sql = "UPDATE users SET lname = lname-'"+quantity1.getText()+"'  WHERE id='"+productid.getText()+"'";
 
@@ -823,19 +942,26 @@ public class sellform extends javax.swing.JFrame {
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         int i = table.getSelectedRow();
-
+//int bp,Interger;
         TableModel model = table.getModel();
 
         // Display Slected Row In JTexteFields
-
+ 
         productid.setText(model.getValueAt(i,0).toString());
 
         productname.setText(model.getValueAt(i,1).toString());
-
+//bp.(model.getValueAt(i, 4).toString());
         quantity1.setText("");
 
         price.setText(model.getValueAt(i,3).toString());
-
+        //int a;
+        //int b;
+ b=(Integer)model.getValueAt(i, 4);
+// a=b*quantity1.getText();
+ //int c;
+ //c=Integer.parseInt(quantity1.getText());
+// a=a+(b*(Integer.valueOf(quantity1.getText())));
+ //a=(b*c);
         // TODO add your handling code here:
     }//GEN-LAST:event_tableMouseClicked
 
@@ -935,12 +1061,14 @@ public class sellform extends javax.swing.JFrame {
 
     private void recieptbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recieptbtnActionPerformed
         // TODO add your handling code here:
+       // jcartarea.setText(null);
+        a();
     }//GEN-LAST:event_recieptbtnActionPerformed
 
     private void quantity1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantity1KeyReleased
         // TODO add your handling code here:
          int pric;
-        int qua;
+       int qua;
         pric=Integer.parseInt(price.getText());
         qua=Integer.parseInt(quantity1.getText());
         int top=(pric*qua);
@@ -956,6 +1084,7 @@ public class sellform extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+         
 
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1033,6 +1162,63 @@ public class sellform extends javax.swing.JFrame {
    // private void executeSQlQuery(String query, String inserted) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
+    private  class ReceiptPrint implements Printable {
+SimpleDateFormat df = new SimpleDateFormat();
+String receiptDetailLine;
+public static final String pspace = "               ";//15-spaces
+        
+public int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
+        throws PrinterException {
+
+    df.applyPattern("dd/MM/yyyy HH:mm:ss");
+    String strText = null;
+    final String LF = "\n";// text string to output
+    int lineStart;           // start index of line in jcartarea
+    int lineEnd;             // end index of line in jcartarea
+    int lineNumber;
+    int lineCount;
+    final String SPACE = "          ";//10 spaces
+    final String SPACES = "         ";//9
+    final String uline = "________________________________________";
+    final String dline = "----------------------------------------";
+    String greetings = "THANKS FOR YOUR VISIT";
+    receiptDetailLine = "asdasdasda";
+
+    Graphics2D g2d = (Graphics2D) graphics;
+    Font font = new Font("MONOSPACED", Font.BOLD, 9);
+
+    if (pageIndex < 0 || pageIndex >= 1) {
+        return Printable.NO_SUCH_PAGE;
+    }
+  String printedLine = "       Service Charge Complimentary";
+    jcartarea.append(printedLine + LF);
+
+    jcartarea.append(LF + SPACES + "   Your Reciept\n" + SPACE + greetings + LF);
+    jcartarea.append(df.format(new Date()) + LF);
+    g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+
+    g2d.setFont(font);
+    lineNumber = 0;
+    lineCount = jcartarea.getLineCount();
+    strText = jcartarea.getText();
+    while (lineCount != 0) {
+        try {
+
+            lineStart = jcartarea.getLineStartOffset(lineNumber);
+            lineEnd = jcartarea.getLineEndOffset(lineNumber);
+            strText = jcartarea.getText(lineStart, lineEnd - lineStart);
+        } catch (Exception exception) {
+            System.out.println("Printing error:" + exception);                  // have to catch BadLocationException
+        }
+
+        g2d.drawString(strText, 1, (lineNumber + 1) * 18);
+        //spacing    between lines
+        lineNumber = lineNumber + 1;
+        lineCount--;
+    }
+    return Printable.PAGE_EXISTS;
+    }
+
     /**
      *
      * @param query
@@ -1088,4 +1274,5 @@ public class sellform extends javax.swing.JFrame {
 
 
 
+}
 }

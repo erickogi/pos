@@ -1,8 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//eric kogi
+//my first 5k off my code today  7/18/2016
+
 package iteration_one;
 
 
@@ -12,20 +10,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
 
-/*
- * Login.java
- *
- * Created on June 30, 2012, 10:05 AM
- */
 
 
 
 /**
  *
- * @author  Administrator
+ * @author ERIC KOGI
  */
 public class login extends javax.swing.JFrame {
 
@@ -68,7 +60,7 @@ public class login extends javax.swing.JFrame {
 
              //open connection
             Connection connection;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
             String str="";
             str="select * from lib_user where user_name =? and user_password =?";
            PreparedStatement pst=connection.prepareStatement(str);
@@ -112,7 +104,7 @@ public class login extends javax.swing.JFrame {
 
        try {
 
-           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
 
            return con;
 
@@ -270,7 +262,7 @@ public class login extends javax.swing.JFrame {
 
              //open connection
             Connection connection;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
             String str="";
             str="select * from lib_user where user_name =? and user_password =?";
            PreparedStatement pst=connection.prepareStatement(str);
@@ -312,16 +304,19 @@ public class login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Calendar today = Calendar.getInstance();
-Calendar expires = Calendar.getInstance();
-expires.set(2016, 07, 01);
-if(today.after(expires)) {
-
-                JOptionPane.showMessageDialog(null,"This software is expired..");
-
-  System.err.println("This software is expired.");
-  System.exit(1);
-}
+//        Calendar today = Calendar.getInstance();
+//Calendar expires = Calendar.getInstance();
+//expires.set(2016,8, 01);
+//if(today.after(expires)) {
+//
+//                JOptionPane.showMessageDialog(null,"This software is expired..\n"
+//                        + "contact 0714406984\n"
+//                        + "0r erickogi14@gmail.com\n"
+//                        + "or vist erickogi.co.ke\n");
+//
+//  System.err.println("This software is expired.");
+//  System.exit(1);
+//}
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new login().setVisible(true);

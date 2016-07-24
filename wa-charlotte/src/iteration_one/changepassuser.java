@@ -31,7 +31,7 @@ public Connection getConnection()
 
        try {
 
-           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
 
            return con;
 
@@ -183,7 +183,7 @@ public Connection getConnection()
             
              //open connection
             Connection connection;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
             String str="";
             //String str1="";
             str="select * from lib_user where  user_password =?";
@@ -203,7 +203,7 @@ public Connection getConnection()
                try
         {
         //Connection connection;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");  
+            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");  
 
             String sql = "UPDATE lib_user SET user_password ='"+confirmpassword.getText()+"'WHERE user_name='user'  ";
             //String sql1 = "UPDATE lib_user SET user_password='"+confirmpassword.getText()+"'WHERE user_name='admin'  ";

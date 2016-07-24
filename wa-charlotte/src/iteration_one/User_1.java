@@ -24,15 +24,20 @@ public class User_1 {
     private String fname;
     private String lname;
     private int age;
+    private int bp;
+    private String from;
+    
     //private String updated_at;
     
     
-    public User_1(int Id,String Fname,String Lname,int Age)
+    public User_1(int Id,String Fname,String Lname,int Age,int Bp,String From)
     {
         this.id = Id;
         this.fname = Fname;
         this.lname = Lname;
         this.age = Age;
+        this.bp=Bp;
+        this.from=From;
         //this.updated_at=Updated_at;
     }
     
@@ -54,6 +59,16 @@ public class User_1 {
     public int getAge()
     {
         return age;
+        
+    }
+     public int getBp()
+    {
+        return bp;
+        
+    }
+      public String getFrom()
+    {
+        return from;
         
     }
 //    public String getUpdated_at()

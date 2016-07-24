@@ -72,7 +72,7 @@ public class SendMail {
     //double total;
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users",
-        "root", "");
+        "root", "123ERYcog.");
     Statement st2 = con.createStatement();
     ResultSet res2 = st2.executeQuery("SELECT SUM(age) FROM trans  WHERE DATE(updated_at) = DATE(NOW())");
     while (res2.next()) {
@@ -120,7 +120,7 @@ public class SendMail {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("erickogi14@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse("nderiann41@gmail.com"));
+                InternetAddress.parse("nderiann41@gmail.co"));
             message.setSubject("TRANSACTION REPORT");
 
              //message.setText("\n\ntoday"+ Double.toString(total));

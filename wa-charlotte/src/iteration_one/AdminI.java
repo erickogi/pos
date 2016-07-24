@@ -66,7 +66,7 @@ public class AdminI extends javax.swing.JFrame {
 
              //open connection
             Connection connection;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
             String str="";
             str="select * from adminuser where user_name =? and user_password =?";
            PreparedStatement pst=connection.prepareStatement(str);
@@ -81,8 +81,11 @@ public class AdminI extends javax.swing.JFrame {
 
                 insert m=new insert();
                 m.setVisible(true);
+               //static AdminI.setVisible(false);
               Adminpanell k= new Adminpanell();
                       k.setVisible(false);
+                      AdminI i= new AdminI();
+                      i.setVisible(false);
 
                //new Adminpanell().setVisible(false);
                //m.setVisible(true);
@@ -116,7 +119,7 @@ public class AdminI extends javax.swing.JFrame {
 
        try {
 
-           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
 
            return con;
 
@@ -274,7 +277,7 @@ public class AdminI extends javax.swing.JFrame {
 
              //open connection
             Connection connection;
-            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","");
+            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
             String str="";
             str="select * from adminuser where user_name =? and user_password =?";
            PreparedStatement pst=connection.prepareStatement(str);
