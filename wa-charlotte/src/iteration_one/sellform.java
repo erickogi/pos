@@ -212,16 +212,16 @@ String receiptDetailLine;
     int lineNumber;
     int lineCount;
     final String SPACE = "          ";//10 spaces
-    final String SPACES = "         ";//9
+    final String SPACES = "     ";//9
     final String uline = "________________________________________";
     final String dline = "----------------------------------------";
     String greetings = "THANKS FOR YOUR VISIT";
     receiptDetailLine = "RETAIL HARDWARE";
-      //jcartarea.append(SPACES + "sadasdsad" + "\n");
+      jcartarea.append(SPACES + "**********" + "\n");
 
-    //jcartarea.append(" " + SPACES + "sadasdsad" + "\n");
+    jcartarea.append(" " + SPACES + "***********" + "\n");
 
-   // jcartarea.append(SPACES + "sadasdsad" + "\n");
+    jcartarea.append(SPACES + "************" + "\n");
 
     jcartarea.append("" + SPACES + "07565454645" + "\n");
 
@@ -230,7 +230,7 @@ String receiptDetailLine;
     jcartarea.append(uline + "\n");
    // jcartarea.append("Order Ref:" + "   " + receiptDetailLine + "\n");
     jcartarea.append(dline + "\n");
-    jcartarea.append(" Qty     Description" + SPACES + "  Price" + LF);
+    jcartarea.append(" Qty  Description" + SPACES + "  Price" + LF);
 //              final String newline="\n";
 //            final String tab="\t";
 //       this.jcartarea.append( "name"+tab);
@@ -858,7 +858,7 @@ final String SPACE = "          ";//10 spaces
            //jcartarea.append(productid.getText()+tab);
           // jcartarea.append(totalprice.getText()+newline +newline);
             // jcartarea.append(" Qty     Description" + SPACES + "  Price" + LF);
-            jcartarea.append( ab+ "                " +ta +"                "+tb +newline );
+            jcartarea.append( ab+ "      " +ta +"         "+tb +newline );
             //productname.getText(),  + SPACES +, totalprice.getText()+ LF);
    // jcartarea.append(dline + "\n");
 
