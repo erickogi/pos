@@ -120,7 +120,7 @@ public class SendMail {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("erickogi14@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse("nderiann41@gmail.co"));
+                InternetAddress.parse("nderiann41@gmail.com"));
             message.setSubject("TRANSACTION REPORT");
 
              //message.setText("\n\ntoday"+ Double.toString(total));

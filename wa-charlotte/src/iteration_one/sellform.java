@@ -39,7 +39,7 @@ import javax.swing.table.TableRowSorter;
 
 public class sellform extends javax.swing.JFrame {
    DefaultTableModel model = new DefaultTableModel();
-  int b;
+  int b,h;
    int a;
    
  //jcartarea.append( "name"+tab);
@@ -136,38 +136,56 @@ public class sellform extends javax.swing.JFrame {
              quantity1.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent b) {
               // TxtPassword.requestFocus(); //To change body of generated methods, choose Tools | Templates.
-                 final String newline="\n";
+        
+            final String newline="\n";
             final String tab="\t";
-            int pric;
-            int qua;
-int y,c;
-c=Integer.parseInt(quantity1.getText());
-y=b*c;
-            pric=Integer.valueOf(price.getText());
-            qua=Integer.valueOf(quantity1.getText());
-            String tp=totalpurchase.getText();
-            int tps=Integer.valueOf(tp);
+            double pric;
+            double qua;
 
-            int top=(pric*qua);
-            tp=Integer.toString(top+tps);
+            pric=Double.valueOf(price.getText());
+            qua=Double.valueOf(quantity1.getText());
+            String tp=totalpurchase.getText();
+            double tps=Double.valueOf(tp);
+            final String LF = "\n";
+final String SPACE = "          ";//10 spaces
+    final String SPACES = "         ";//9
+            double top=(pric*qua);
+            tp=Double.toString(top+tps);
             //String b=Integer.toString(a);
             //int ptop=(top+tp);
 
-            totalprice.setText(Integer.toString(top));
+            totalprice.setText(Double.toString(top));
 
             totalpurchase.setText(tp);
 
             //jcartarea.append( "name"+tab);
             //jcartarea.append( "quantity"+tab);
-            //jcartarea.append( "price"+newline);
+            //jcartarea.append( "pric"+newline);
             //Jcart=jcartarea.getText();
+       final String ab=quantity1.getText();
+        final String ta=productname.getText();
+         final String tb=totalprice.getText();
+    //jcartarea.append(  productname.getText()+tab );
+           //jcartarea.append(quantity1.getText()+tab);
+           //jcartarea.append(  productname.getText()+tab );
+           //jcartarea.append(productid.getText()+tab);
+          // jcartarea.append(totalprice.getText()+newline +newline);
+            // jcartarea.append(" Qty     Description" + SPACES + "  Price" + LF);
+            jcartarea.append( ab+ "      " +ta +"         "+tb +newline );
+            //productname.getText(),  + SPACES +, totalprice.getText()+ LF);
+   // jcartarea.append(dline + "\n");
 
-            jcartarea.append(  productname.getText()+tab );
-            jcartarea.append(quantity1.getText()+tab);
-            //jcartarea.append(productid.getText()+tab);
-            jcartarea.append(totalprice.getText()+newline +newline);
+   // System.out.println(2);
+
+   // String printedLine = "       Service Charge Complimentary";
+    //jcartarea.append(printedLine + LF);
+
+    //jcartarea.append(LF + SPACES + "   Your Reciept\n" + SPACE + greetings + LF);
+    //jcartarea.append(df.format(new Date()) + LF);
+    jcartarea.setEditable(false);
+            
             // Calender calender=Calender.getInstance();
 //Jcart=jcartarea.getText();
             //java.sql.Date currentTimestamp=new
@@ -177,13 +195,16 @@ y=b*c;
             {
                 Connection connection;
                 connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
-
-                String sql = "INSERT INTO `trans`( `bp`,`fname`, `lname`,`updated_at`, `age`) VALUES ("+y+"'"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
+int y,c;
+c=Integer.parseInt(quantity1.getText());
+y=h*c;
+                String sql = "INSERT INTO `trans`(`bp`, `fname`, `lname`,`updated_at`, `age`) VALUES ("+y+",'"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
+                  //String sql = "INSERT INTO `trans`( `fname`, `lname`,`updated_at`, `age`) VALUES ('"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
                 PreparedStatement pst=connection.prepareStatement(sql);
                 pst.executeUpdate(sql);
             }
-            catch (Exception a) {
-                System.err.println(a);
+            catch (Exception e) {
+                System.err.println(e);
                 System.exit(1);
             }
             try
@@ -196,8 +217,8 @@ y=b*c;
                 PreparedStatement pst=connection.prepareStatement(sql);
                 pst.executeUpdate(sql);
             }
-            catch (Exception a) {
-                System.err.println(a);
+            catch (Exception e) {
+                System.err.println(e);
                 System.exit(1);
             }
             }
@@ -216,14 +237,14 @@ String receiptDetailLine;
     final String uline = "________________________________________";
     final String dline = "----------------------------------------";
     String greetings = "THANKS FOR YOUR VISIT";
-    receiptDetailLine = "RETAIL HARDWARE";
-      jcartarea.append(SPACES + "**********" + "\n");
+    receiptDetailLine = "";
+     // jcartarea.append(SPACES + "*************" + "\n");
 
-    jcartarea.append(" " + SPACES + "***********" + "\n");
+   // jcartarea.append(" " + SPACES + "***********" + "\n");
 
-    jcartarea.append(SPACES + "************" + "\n");
+   // jcartarea.append(SPACES + "************" + "\n");
 
-    jcartarea.append("" + SPACES + "07565454645" + "\n");
+    jcartarea.append("" + SPACES + "***********" + "\n");
 
     jcartarea.append(SPACES + "YOUR PUCHASES" + "\n");
 
@@ -793,17 +814,17 @@ String receiptDetailLine;
 
     private void cashinKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashinKeyReleased
         // TODO add your handling code here:
-        int pric;
-       int qua;
+        double pric;
+       double qua;
         String tp;
 
         pric=Integer.valueOf(cashin.getText());
-        qua=Integer.valueOf(totalpurchase.getText());
+        qua=Double.valueOf(totalpurchase.getText());
         //String tp=change.getText();
         //int tps=Integer.valueOf(tp);
 
-        int top=(pric-qua);
-        tp=Integer.toString(top);
+        double top=(pric-qua);
+        tp=Double.toString(top);
         //String b=Integer.toString(a);
         //int ptop=(top+tp);
 
@@ -826,22 +847,22 @@ String receiptDetailLine;
 
             final String newline="\n";
             final String tab="\t";
-            int pric;
-            int qua;
+            double pric;
+            double qua;
 
-            pric=Integer.valueOf(price.getText());
-            qua=Integer.valueOf(quantity1.getText());
+            pric=Double.valueOf(price.getText());
+            qua=Double.valueOf(quantity1.getText());
             String tp=totalpurchase.getText();
-            int tps=Integer.valueOf(tp);
+            double tps=Double.valueOf(tp);
             final String LF = "\n";
 final String SPACE = "          ";//10 spaces
     final String SPACES = "         ";//9
-            int top=(pric*qua);
-            tp=Integer.toString(top+tps);
+            double top=(pric*qua);
+            tp=Double.toString(top+tps);
             //String b=Integer.toString(a);
             //int ptop=(top+tp);
 
-            totalprice.setText(Integer.toString(top));
+            totalprice.setText(Double.toString(top));
 
             totalpurchase.setText(tp);
 
@@ -880,8 +901,8 @@ final String SPACE = "          ";//10 spaces
             {
                 Connection connection;
                 connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/users", "root","123ERYcog.");
-int y,c;
-c=Integer.parseInt(quantity1.getText());
+double y,c;
+c=Double.parseDouble(quantity1.getText());
 y=b*c;
                 String sql = "INSERT INTO `trans`(`bp`, `fname`, `lname`,`updated_at`, `age`) VALUES ("+y+",'"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
                   //String sql = "INSERT INTO `trans`( `fname`, `lname`,`updated_at`, `age`) VALUES ('"+productname.getText()+"','"+quantity1.getText()+"',now(),"+totalprice.getText()+")";
@@ -1032,6 +1053,35 @@ y=b*c;
 
         cashin.setText(null);
         change.setText(null);
+                           SimpleDateFormat df = new SimpleDateFormat();
+String receiptDetailLine;
+              df.applyPattern("dd/MM/yyyy HH:mm:ss");
+    String strText = null;
+    final String LF = "\n";// text string to output
+    int lineStart;           // start index of line in jcartarea
+    int lineEnd;             // end index of line in jcartarea
+    int lineNumber;
+    int lineCount;
+    final String SPACE = "          ";//10 spaces
+    final String SPACES = "     ";//9
+    final String uline = "________________________________________";
+    final String dline = "----------------------------------------";
+    String greetings = "THANKS FOR YOUR VISIT";
+    receiptDetailLine = "RETAIL HARDWARE";
+      jcartarea.append(SPACES + "**********" + "\n");
+
+    jcartarea.append(" " + SPACES + "***********" + "\n");
+
+    jcartarea.append(SPACES + "************" + "\n");
+
+    jcartarea.append("" + SPACES + "07565454645" + "\n");
+
+    jcartarea.append(SPACES + "YOUR PUCHASES" + "\n");
+
+    jcartarea.append(uline + "\n");
+   // jcartarea.append("Order Ref:" + "   " + receiptDetailLine + "\n");
+    jcartarea.append(dline + "\n");
+    jcartarea.append(" Qty  Description" + SPACES + "  Price" + LF);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1067,13 +1117,13 @@ y=b*c;
 
     private void quantity1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantity1KeyReleased
         // TODO add your handling code here:
-         int pric;
-       int qua;
-        pric=Integer.parseInt(price.getText());
-        qua=Integer.parseInt(quantity1.getText());
-        int top=(pric*qua);
+         double pric;
+      double qua;
+        pric=Double.parseDouble(price.getText());
+         qua=Double.parseDouble(quantity1.getText());
+        double top=(pric*qua);
 
-        totalprice.setText(Integer.toString(top));
+        totalprice.setText(Double.toString(top));
     }//GEN-LAST:event_quantity1KeyReleased
 
       private void tableInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
